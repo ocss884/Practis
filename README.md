@@ -15,7 +15,7 @@ Store your script in the following folder:
   - `[dataset]_ds_config.json`: Config file for `Deepspeed` engine. In our case, pls only change the `train_batch_size` and `gradient_accumulation_steps` and keep the rest unchanged.
   - `[dataset]_model_config.json`: Config file for `model parameters`, total number of `epochs`, `training_batch_size` of individual GPU and `num_batches_per_epoch`.
 
-`train_batch_size` in `[dataset]_ds_config.json` is the **TRUE** batch size as the one you use with single GPU. Due to limitation of GPU memory we have to divide each batch into chunks. The calculation should follow the following formula:  
+`train_batch_size` in `[dataset]_ds_config.json` is the **TRUE** batch size as the one you use with single GPU. Due to limitation of GPU memory we have to divide each batch into chunks. The calculation should follow the following formula, text inside the square brackets indicates the corresponding config file:  
 ```
 train_batch_size[ds] = train_batch_size[model] * gradient_accumulation_steps[ds] * num_of_gpu
 ```  

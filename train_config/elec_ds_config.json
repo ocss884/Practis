@@ -1,0 +1,37 @@
+{
+    "train_batch_size": 48,
+    "gradient_accumulation_steps": 3,
+    "optimizer": {
+      "type": "Adam",
+      "params": {
+        "lr": 1e-3,
+        "weight_decay": 0
+      }
+    },
+    "gradient_clipping": 1e3,
+    "prescale_gradients": false,
+    "fp16": {
+        "enabled": false,
+        "auto_cast": false,
+        "fp16_master_weights_and_grads": false,
+        "loss_scale": 0,
+        "loss_scale_window": 500,
+        "hysteresis": 2,
+        "min_loss_scale": 1,
+        "initial_scale_power": 15
+    },
+    "bf16":{
+      "enabled": false
+    },
+    "wall_clock_breakdown": false,
+    "zero_optimization": {
+        "stage": 2,
+        "allgather_partitions": true,
+        "reduce_scatter": true,
+        "allgather_bucket_size": 50000000,
+        "reduce_bucket_size": 50000000,
+        "overlap_comm": true,
+        "contiguous_gradients": true,
+        "cpu_offload": false
+    }
+  }

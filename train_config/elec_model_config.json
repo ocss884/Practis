@@ -1,0 +1,53 @@
+{
+    "dataset_name": "electricity_hourly",
+    "save_path": "../train_ckpt/electricity/5-8",
+    "epochs":100,
+    "train_batch_size": 4,
+    "num_batches_per_epoch": 1536, 
+    "model_parameters": {
+        "pretrain_batches": -12800,
+        "series_embedding_dim": 5,
+        "series_attention" : false,
+        "input_encoder_layers": 2,
+        "input_encoding_normalization": true,
+        "data_normalization": "learned",
+        "loss_normalization": "series",
+        "positional_encoding":{
+            "dropout": 0.01
+        },
+        "encoder":{
+            "embedding_dim" : 24,
+            "perceiver_encoder" : {
+                "num_latents" : 256,
+                "num_latent_channels" : 48,
+                "num_self_attention_layers_per_block": 2,
+                "num_self_attention_heads": 2,
+                "num_cross_attention_heads": 2,
+                "dropout": 0.01
+            }
+        },
+        "perceiver_decoder":{
+            "num_latent_channels" : 48,
+            "num_cross_attention_heads": 2
+        },
+        "copula_decoder":{
+            "min_u": 0.05,
+            "max_u": 0.95,
+            "attentional_copula": {
+                "num_series": 321,
+                "attention_heads": 3,
+                "attention_layers": 1,
+                "attention_dim": 8,
+                "mlp_layers": 1,
+                "mlp_dim": 48,
+                "resolution": 20
+            },
+            "dsf_marginal": {
+                "mlp_layers": 1,
+                "mlp_dim": 48,
+                "flow_layers": 3,
+                "flow_hid_dim": 16
+            }
+        }
+    }
+}
